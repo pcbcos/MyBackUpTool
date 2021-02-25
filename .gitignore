@@ -2,3 +2,4 @@ action
 info
 .idea
 venv
+__pycache__
