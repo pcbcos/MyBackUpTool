@@ -3,6 +3,12 @@ import os
 import shutil
 
 
+def better_copy(scr,dst):
+    if not os.path.exists(os.path.split(dst)[0]):
+        os.system("mkdir {}".format(os.path.split(dst)[0]))
+    shutil.copy2(scr,dst)
+
+
 def do(_action_):
     global del_actions
     target, mode = _action_
@@ -15,7 +21,7 @@ def do(_action_):
         if mode == "del":
             del_actions.append(_action_)
         elif mode == "update":
-            shutil.copy2(os.path.join(url_backup_from, target), os.path.join(url_backup_to, target))
+            better_copy(os.path.join(url_backup_from, target), os.path.join(url_backup_to, target))
     return del_actions
 
 
